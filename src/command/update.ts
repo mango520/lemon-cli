@@ -12,11 +12,11 @@ const oraLoading = ora({
     
         
 /**
- * 更新 lemon-cli 到最新版本
+ * 更新 lemon-front 到最新版本
  */
 export function update (){
     oraLoading.start()
-    process.exec('npm -g lemon-cli@latest', (error) => {
+    process.exec('npm -g lemon-front@latest', (error) => {
         oraLoading.stop();
         if (!error) {
             console.log(chalk.green('更新成功'))
