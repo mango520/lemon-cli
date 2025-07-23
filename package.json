@@ -1,0 +1,45 @@
+{
+  "name": "lemon-cli",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rollup -c rollup.config.js --bundleConfigAsCjs"
+  },
+  "keywords": [
+    "vite",
+    "vue3",
+    "typeScript",
+    "Element-plus"
+  ],
+  "author": "lemon",
+  "bin":{
+    "lemon":"bin/index.js"
+  },
+  "files": ["dist","bin","README.md"],
+  "license": "ISC",
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^28.0.6",
+    "@rollup/plugin-json": "^6.1.0",
+    "@rollup/plugin-node-resolve": "^16.0.1",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@types/fs-extra": "^11.0.4",
+    "@types/lodash": "^4.17.20",
+    "@types/node": "^24.0.15",
+    "axios": "^1.10.0",
+    "fs-extra": "^11.3.0",
+    "ora": "^8.2.0",
+    "progress-estimator": "^0.3.1",
+    "rollup": "^4.45.1",
+    "rollup-plugin-node-externals": "^8.0.1",
+    "rollup-plugin-typescript2": "^0.36.0",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "@inquirer/prompts": "^7.6.0",
+    "commander": "^14.0.0",
+    "lodash": "^4.17.21",
+    "simple-git": "^3.28.0"
+  }
+}
