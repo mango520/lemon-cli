@@ -1,6 +1,7 @@
 import ora from 'ora';
 import chalk from 'chalk';
-import process from 'child_process';
+import process from 'child_process';//主要用于执行 shell 命令的模块。
+import log from '../utils/log'
 //初始化展示加载动画
 const oraLoading = ora({
     text: '正在更新请稍候...',
@@ -9,19 +10,18 @@ const oraLoading = ora({
 	   frames: ['⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏'].map(item=>chalk.blue(item))
     }
 })
-    
         
 /**
  * 更新 lemon-front 到最新版本
  */
-export function update (){
+export async function update (){
     oraLoading.start()
-    process.exec('npm -g lemon-front@latest', (error) => {
+    process.exec('npm i lemon-front@latest -g', (error) => {
         oraLoading.stop();
         if (!error) {
-            console.log(chalk.green('更新成功'))
+            log.success(chalk.green('更新成功'))
         } else {
-            console.log(chalk.red(error.message || String(error)))
+            log.error(chalk.red(error.message || String(error)))
         }
     })
 }
