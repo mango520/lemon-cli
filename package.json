@@ -15,7 +15,7 @@
   ],
   "author": "lemon",
   "bin": {
-    "lemon": "bin/index.js"
+    "lemon": "index.js"
   },
   "files": [
     "dist",
