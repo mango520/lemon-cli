@@ -1,6 +1,6 @@
 {
   "name": "lemon-front",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "快速搭建前端项目的脚手架工具，基于vite+vue3+TypeScript+Element-plus",
   "main": "index.js",
   "scripts": {
