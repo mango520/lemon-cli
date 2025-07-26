@@ -2,10 +2,8 @@ import path from 'path';
 import fs from 'fs-extra';
 import { input,select } from '@inquirer/prompts';
 import { clone } from '../utils/clone';
-import { name,version } from '../../package.json'
-import axios, { AxiosResponse } from 'axios';
-import { gt } from 'lodash'
-import chalk from 'chalk';
+import { name,version } from '../../package.json';
+import { checkVersion } from '../utils/npmVersion';
 
 //定义模版信息接口
 export interface templateInfo {
@@ -25,7 +23,7 @@ export const templates: Map<string, templateInfo> = new Map([
     ["vite-vue3-TS-base-template", {
         name: "vite-vue3-TS-template",
         cloneUrl: "https://gitee.com/NetLemon/base-front.git",
-        description: "基于Vue3+Vite+TypeScript的脚手架",
+        description: "基于Vue3+Vite+TypeScript(基础模板)",
         branch: "dev1"
     }]
 ]);
@@ -93,45 +91,4 @@ export async function isOverwrite(fileName: string): Promise<boolean> {
       {name: '取消', value: false}
     ]
   });
-}
-
-/**
- * 获取npm包的信息
- *
- * @param name npm包的名称
- * @returns 返回npm包的信息对象，如果请求失败则返回空对象
- */
-export async function getNpmInfo(name:string){
-    const npmUrl = `https://registry.npmjs.org/${name}`;
-    let res = {};
-    try{
-        res = await axios.get(npmUrl) as AxiosResponse;
-    }catch(e){
-        console.error(e);
-    }
-    return res;
-}
-
-export async function getNpmLastVersion(name:string){
-    const { data } = (await getNpmInfo(name)) as AxiosResponse;
-    return data['dist-tags'].latest;
-}
-
-
-/**
- * 检查指定包的版本是否是最新的
- *
- * @param name 包名
- * @param version 当前版本
- * @returns 无返回值
- */
-export async function checkVersion(name:string,version:string){
-    const lastVersion = await getNpmLastVersion(name);
-    //判断是否需要更新
-    const needUpdate = gt(lastVersion,version);
-    if(needUpdate){
-        console.warn(`检测到新版本：${chalk.bgBlueBright(lastVersion)}，当前版本：${chalk.bgYellow(version)}，请更新后再使用！`);
-        console.warn(`执行命令：${chalk.green(`npm install -g ${name}@${lastVersion}`)} 或使用 ${chalk.green('lemon update')}更新`);
-    }
-    return needUpdate
 }
