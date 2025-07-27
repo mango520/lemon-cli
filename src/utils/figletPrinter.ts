@@ -1,8 +1,14 @@
-// const figlet = require ("figlet") ;
+import figlet from "figlet";
 import chalk from 'chalk';
+// @ts-ignore
+import standardFont from "figlet/importable-fonts/Standard.js"; 
 
-export async function goodPrinter(){
+// 手动解析字体
+figlet.parseFont("Standard", standardFont);
+export function goodPrinter() {
   console.log(chalk.rgb(193, 190, 40).visible("欢迎使用lemon-front脚手架工具!"));
-  // const data = await figlet('lemon-front');
-  // console.log(chalk.rgb(193, 190, 40).visible(data));
-};
+  figlet.text('lemon-front', { font: 'Standard' }, (err, data) => {
+    if (err) console.error('Error:', err);
+    else console.log(chalk.rgb(193, 190, 40).visible(data!));
+  });
+}

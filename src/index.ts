@@ -3,6 +3,8 @@ import { Command } from 'commander'
 import { version } from '../package.json'
 import { createDir } from './command/create'
 import { update } from './command/update';
+import process from 'node:process';
+import log from './utils/log'
 // 命令行中使用 lemon xxx 即可触发
 const program = new Command();
 
@@ -31,6 +33,14 @@ program
         createDir(projectName)
     })
 
-
-
+// 解析命令行参数
 program.parse();
+
+// 捕获所有未处理的异常
+process.on('uncaughtException', (err) => {
+  if (err.message.includes('SIGINT')) {
+    log.warn(' 已取消操作');
+    process.exit(0);
+  }
+  throw err;
+});
