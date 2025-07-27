@@ -16,7 +16,7 @@ const oraLoading = ora({
  */
 export function update (){
     oraLoading.start()
-    process.exec('npm -g lemon-front@latest', (error) => {
+    process.exec('npm i lemon-front@latest -g', (error) => {
         oraLoading.stop();
         if (!error) {
             console.log(chalk.green('更新成功'))

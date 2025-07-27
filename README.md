@@ -1,5 +1,5 @@
 ## 🍋lemon-front
-![Npm 版本](https://img.shields.io/badge/lemon--front-V1.0.1%20-green)
+![Npm 版本](https://img.shields.io/badge/lemon--front-V1.0.2%20-green)
 
 ## 📖简介
 - 快速搭建前端项目的脚手架工具
