@@ -7,7 +7,6 @@ import process from 'node:process';
 import log from './utils/log'
 // 命令行中使用 lemon xxx 即可触发
 const program = new Command();
-
 program
     .name('lemon')
     .description('快速搭建前端项目的脚手架工具')
